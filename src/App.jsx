@@ -1,10 +1,12 @@
+import { Footer } from "./views/Footer/Footer.jsx";
+import { Header } from "./views/Header/Hedaer.jsx";
+import { Main } from "./views/Main/Main.jsx";
+
 const App = () => (
   <>
-    <header></header>
-    <main>
-      <h1>Hello</h1>
-    </main>
-    <footer></footer>
+    <Header />
+    <Main />
+    <Footer />
   </>
 );
 
