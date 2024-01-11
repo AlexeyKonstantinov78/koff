@@ -1,3 +1,3 @@
 import _ from "./Logo.module.scss";
 
-export const Logo = () => (<>Logo</>);
+export const Logo = (props) => <div className={props.className}>Logo</div>;

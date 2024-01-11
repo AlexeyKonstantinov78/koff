@@ -3,12 +3,13 @@
   gap: 16px;
   align-items: center;
   justify-content: space-between;
-  grid-template-areas: "logo search navigation";
+  grid-template-areas: "logo navigation"
+    "search search"
+  ;
 
-  @media (width<=820px) {
-    grid-template-areas: "logo navigation"
-      "search search"
-    ;
+
+  @media (width>=820px) {
+    grid-template-areas: "logo search navigation";
     grid-template-columns: 94px 1fr auto;
     align-items: center;
   }
