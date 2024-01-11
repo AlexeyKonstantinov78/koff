@@ -1,0 +1,27 @@
+.container {
+  display: grid;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  grid-template-areas: "logo search navigation";
+
+  @media (width<=820px) {
+    grid-template-areas: "logo navigation"
+      "search search"
+    ;
+    grid-template-columns: 94px 1fr auto;
+    align-items: center;
+  }
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.search {
+  grid-area: search;
+}
+
+.navigation {
+  grid-area: navigation;
+}
