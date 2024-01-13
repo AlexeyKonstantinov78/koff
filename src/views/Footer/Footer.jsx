@@ -8,10 +8,18 @@ import _ from "./Footer.module.scss";
 export const Footer = () => (
   <footer className={_.footer}>
     <Container className={_.container}>
-      <Logo className={_.logo} />
-      <Contacts />
-      <Developer />
-      <Copyright />
+      <div className={_.logo}>
+        <Logo />
+      </div>
+      <div className={_.contacts}>
+        <Contacts />
+      </div>
+      <div className={_.developer}>
+        <Developer />
+      </div>
+      <div className={_.copyright}>
+        <Copyright />
+      </div>
     </Container>
   </footer>
 );
