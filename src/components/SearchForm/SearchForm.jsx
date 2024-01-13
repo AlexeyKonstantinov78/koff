@@ -1,3 +1,3 @@
 import _ from "./SearchForm.module.scss";
 
-export const SearchForm = () => (<>SearchForm</>);
+export const SearchForm = () => <>SearchForm</>;
