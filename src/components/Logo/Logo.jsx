@@ -1,10 +1,10 @@
 import _ from "./Logo.module.scss";
 import logoSvg from "./img/logo.svg";
 
-export const Logo = ({ className = "" }) => (
+export const Logo = () => (
   <a href="/">
     <img
-      className={_.logo + " " + className}
+      className={_.logo}
       src={logoSvg}
       alt="Логотип мебельного маркета Koff" />
   </a>
