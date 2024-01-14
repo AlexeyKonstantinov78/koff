@@ -33,5 +33,23 @@
   @media (width>=820px) {
     width: 331px;
   }
+}
 
+.developers {
+  @media (width>=580px) {
+    grid-column: 1/2;
+  }
+}
+
+.contacts {
+  @media (width>=580px) {
+    grid-column: 2/3;
+    justify-self: end;
+  }
+}
+
+.copyright {
+  @media (width>=580px) {
+    grid-column: 1/2;
+  }
 }
