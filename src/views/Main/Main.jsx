@@ -1,9 +1,8 @@
-import { Container } from "../Container/Container.jsx";
+import { Goods } from "../../components/Goods/Goods.jsx";
 
 export const Main = () => (
   <main>
-    <Container>
-      <h1>Hello main view component</h1>
-    </Container>
+    {/* <Catalog /> */}
+    <Goods />
   </main>
 );
