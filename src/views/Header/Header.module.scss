@@ -1,3 +1,9 @@
+.header {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EEEFF2;
+}
+
 .container {
   display: grid;
   gap: 16px;
@@ -6,7 +12,6 @@
   grid-template-areas: "logo navigation"
     "search search"
   ;
-
 
   @media (width>=820px) {
     grid-template-areas: "logo search navigation";
@@ -22,8 +27,19 @@
 
 .search {
   grid-area: search;
+  width: 100%;
+
+  @media (width>=820px) {
+    max-width: 408px;
+    justify-self: center;
+  }
+
+  @media (width>=1120px) {
+    max-width: 514px;
+  }
 }
 
 .navigation {
   grid-area: navigation;
+  justify-self: end;
 }
