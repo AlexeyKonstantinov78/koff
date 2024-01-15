@@ -16,20 +16,7 @@
 
   &__list {
     overflow-x: auto;
-    padding: 0 16px;
     display: flex;
     gap: 4px;
-
-    @media (min-width: 580px) {
-      padding: 0 29px;
-    }
-
-    @media (min-width: 820px) {
-      padding: 0 43px;
-    }
-
-    @media (min-width: 1120px) {
-      padding: 0 92px;
-    }
   }
 }

@@ -3,7 +3,7 @@ import { CategoryItem } from "../CategoryItem/CategoryItem";
 import _ from "./Catalog.module.scss";
 
 export const Catalog = () => (
-  <nav>
+  <nav className={_.catalog}>
     <Container>
       <h2 className={`${_.title} visually-hidden`}>Категории товаров</h2>
       <ul className={_.catalog__list}>

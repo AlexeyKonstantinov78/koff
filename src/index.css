@@ -154,5 +154,17 @@ iframe {
 } */
 
 section {
-  padding: 45px 25px;
+  padding: 24px 0;
+}
+
+@media (width>=580px) {
+  section {
+    padding: 32px 0;
+  }
+}
+
+@media (width>=820px) {
+  section {
+    padding: 40px 0;
+  }
 }
