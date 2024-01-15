@@ -1,26 +1,28 @@
 import _ from "./CardItem.module.scss";
 
-export const CardItem = () => (
+export const CardItem = ({ data }) => (
   <article className={_.card}>
-    <a className={_.card__link + " " + _.card__link_img} href="/product/18">
+    <a
+      className={_.card__link + " " + _.card__link_img}
+      href={`/product/${data.id}`}>
       <img
         className={_.card__img}
-        src="https://koff-api.vercel.app/img//1hb3ggll9lir2jl2.jpg"
+        src={`https://koff-api.vercel.app/${data.images[0]}`}
         alt="Прямой диван Кроусон"
       />
     </a>
     <div className={_.card__info}>
       <h3 className={_.card__title}>
-        <a className={_.card__link} href="/product/18">
-          Прямой диван Кроусон
+        <a className={_.card__link} href={`/product/${data.id}`}>
+          {data.name}
         </a>
       </h3>
-      <p className={_.card__price}>270&nbsp;468&nbsp;₽</p>
+      <p className={_.card__price}>{data.price.toLocaleString()}&nbsp;₽</p>
     </div>
-    <button className={_.card__btn} data-id="18" aria-label="В корзину">
+    <button className={_.card__btn} data-id={data.id} aria-label="В корзину">
       В корзину
     </button>
-    <button className={_.card__favorite} data-id="18">
+    <button className={_.card__favorite} data-id={data.id}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

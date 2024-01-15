@@ -4,6 +4,7 @@ import { Goods } from "../../components/Goods/Goods.jsx";
 import { useEffect } from "react";
 import { fetchCategories } from "../../store/categories/categories.slice.js";
 import { Container } from "../Container/Container.jsx";
+import { fetchProducts } from "../../store/products/products.slice.js";
 
 export const Main = () => {
   const dispatch = useDispatch();
@@ -13,12 +14,23 @@ export const Main = () => {
     error: errorCategories,
   } = useSelector((state) => state.categories);
 
+  const {
+    data: dataProducts,
+    loading: loadingProducts,
+    error: errorProducts,
+  } = useSelector((state) => state.products);
+
   useEffect(() => {
     dispatch(fetchCategories());
+    dispatch(fetchProducts());
   }, [dispatch]);
 
   if (errorCategories) {
-    return <Container>Ошибка: {errorCategories}</Container>;
+    return <Container>Ошибка получения категорий: {errorCategories}</Container>;
+  }
+
+  if (errorProducts) {
+    return <Container>Ошибка получение продукта: {errorProducts}</Container>;
   }
 
   return (
@@ -28,7 +40,12 @@ export const Main = () => {
       ) : (
         <Container>Загрузка...</Container>
       )}
-      <Goods />
+
+      {!loadingProducts && dataProducts ? (
+        <Goods data={dataProducts} />
+      ) : (
+        <Container>Загрузка...</Container>
+      )}
     </main>
   );
 };

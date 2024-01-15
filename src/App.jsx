@@ -4,16 +4,21 @@ import { Header } from "./views/Header/Header.jsx";
 import { Main } from "./views/Main/Main.jsx";
 import { useEffect } from "react";
 import { fetchAccessToken } from "./store/auth/auth.slice.js";
+import { Container } from "./views/Container/Container.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { accessToken, loading } = useSelector((state) => state.auth);
+  const { accessToken, loading, error } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!accessToken) {
       dispatch(fetchAccessToken());
     }
   }, [dispatch, accessToken]);
+
+  if (error) {
+    return <Container>Ошибка получения token: {error}</Container>;
+  }
 
   return (
     <>
