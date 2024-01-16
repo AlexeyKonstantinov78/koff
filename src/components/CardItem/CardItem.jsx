@@ -1,28 +1,25 @@
 import _ from "./CardItem.module.scss";
+import { API_URL } from "../../const";
 
-export const CardItem = ({ data }) => (
+export const CardItem = ({ id, name, images, price }) => (
   <article className={_.card}>
     <a
       className={_.card__link + " " + _.card__link_img}
-      href={`/product/${data.id}`}>
-      <img
-        className={_.card__img}
-        src={`https://koff-api.vercel.app/${data.images[0]}`}
-        alt="Прямой диван Кроусон"
-      />
+      href={`/product/${id}`}>
+      <img className={_.card__img} src={`${API_URL}${images[0]}`} alt={name} />
     </a>
     <div className={_.card__info}>
       <h3 className={_.card__title}>
-        <a className={_.card__link} href={`/product/${data.id}`}>
-          {data.name}
+        <a className={_.card__link} href={`/product/${id}`}>
+          {name}
         </a>
       </h3>
-      <p className={_.card__price}>{data.price.toLocaleString()}&nbsp;₽</p>
+      <p className={_.card__price}>{price.toLocaleString()}&nbsp;₽</p>
     </div>
-    <button className={_.card__btn} data-id={data.id} aria-label="В корзину">
+    <button className={_.card__btn} data-id={id} aria-label="В корзину">
       В корзину
     </button>
-    <button className={_.card__favorite} data-id={data.id}>
+    <button className={_.card__favorite} data-id={id}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

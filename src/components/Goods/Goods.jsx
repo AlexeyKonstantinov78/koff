@@ -9,7 +9,7 @@ export const Goods = ({ data }) => (
       <ul className={_.list}>
         {data.map((item) => (
           <li key={item.article} className="_.catalog__item">
-            <CardItem data={item} />
+            <CardItem {...item} />
           </li>
         ))}
       </ul>
