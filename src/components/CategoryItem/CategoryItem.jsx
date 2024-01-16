@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 import _ from "./CategoryItem.module.scss";
 
 export const CategoryItem = ({ title }) => (
-  <a className={_.catalog__link} href={`/category?slug=${title}`}>
+  <Link className={_.catalog__link} to={`/category?slug=${title}`}>
     {title}
-  </a>
+  </Link>
 );
