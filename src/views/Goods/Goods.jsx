@@ -4,6 +4,7 @@ import _ from "./Goods.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
+import { CircleLoader } from "react-spinners";
 
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,14 @@ export const Goods = ({ data }) => {
   }, [dispatch]);
 
   if (loadingProducts) {
-    return <Container>Загрузка...</Container>;
+    return (
+      <CircleLoader
+        color="#36d7b7"
+        cssOverride={{
+          margin: "0 auto",
+        }}
+      />
+    );
   }
 
   if (errorProducts) {

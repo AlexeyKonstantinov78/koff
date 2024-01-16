@@ -4,6 +4,7 @@ import _ from "./Catalog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategories } from "../../store/categories/categories.slice";
+import { CircleLoader } from "react-spinners";
 
 export const Catalog = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,14 @@ export const Catalog = () => {
   }, [dispatch]);
 
   if (loadingCategories) {
-    return <Container>Загрузка...</Container>;
+    return (
+      <CircleLoader
+        color="#36d7b7"
+        cssOverride={{
+          margin: "0 auto",
+        }}
+      />
+    );
   }
 
   if (errorCategories) {
