@@ -1,5 +1,5 @@
-import { Container } from "../../views/Container/Container";
-import { CardItem } from "../CardItem/CardItem";
+import { Container } from "../Container/Container";
+import { CardItem } from "../../components/CardItem/CardItem";
 import _ from "./Goods.module.scss";
 
 export const Goods = ({ data }) => (
