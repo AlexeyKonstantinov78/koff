@@ -10,6 +10,7 @@ import { Goods } from "./views/Goods/Goods.jsx";
 import { Cart } from "./components/Cart/Cart.jsx";
 import { Card } from "./components/Card/Card.jsx";
 import { CircleLoader } from "react-spinners";
+import { PagesError } from "./views/Error/404.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         <Footer />
       </>
     ),
+    errorElement: <PagesError />,
   },
   {
     path: "/favorite",
