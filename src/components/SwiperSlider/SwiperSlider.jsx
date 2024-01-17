@@ -14,7 +14,7 @@ import "swiper/css/scrollbar";
 import { API_URL } from "../../const";
 import { useState } from "react";
 
-export const SwiperSlider = ({ data }) => {
+export const SwiperSlider = ({ images, name }) => {
   const [mainSwiper, setMainSwiper] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -27,12 +27,12 @@ export const SwiperSlider = ({ data }) => {
         onSwiper={setMainSwiper}
         spaceBetween={10}
         onSlideChange={() => console.log("slide change")}>
-        {data.images.map((item, i) => (
+        {images.map((item, i) => (
           <SwiperSlide className={_.product__slide} key={i}>
             <img
               className={_.product__image}
               src={`${API_URL}${item}`}
-              alt={data.name}
+              alt={name}
             />
           </SwiperSlide>
         ))}
@@ -92,12 +92,12 @@ export const SwiperSlider = ({ data }) => {
         spaceBetween={14}
         slidesPerView={4}
         freeMode>
-        {data.images.map((item, i) => (
+        {images.map((item, i) => (
           <SwiperSlide className={_.product__slide_thumbnail} key={i}>
             <img
               className={_.product__img_thumbnail}
               src={`${API_URL}${item}`}
-              alt={data.name}
+              alt={name}
             />
           </SwiperSlide>
         ))}

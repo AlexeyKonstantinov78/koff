@@ -38,7 +38,7 @@ export const Card = () => {
       <Container className={_.product__container}>
         <h2 className={_.product__title}>{data.name}</h2>
         <div className={_.product__picture}>
-          <SwiperSlider data={data} />
+          <SwiperSlider {...data} />
         </div>
         <div className={_.product__info}>
           <p className={_.product__price}>
