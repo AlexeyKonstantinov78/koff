@@ -37,7 +37,7 @@ export const SwiperSlider = ({ images, name }) => {
           </SwiperSlide>
         ))}
         <button
-          onClick={() => mainSwiper.slideNext()}
+          onClick={() => mainSwiper.slidePrev()}
           className={_.product__arrow + " " + _.product__arrow_prev}>
           <svg
             width="32"
@@ -60,7 +60,7 @@ export const SwiperSlider = ({ images, name }) => {
           </svg>
         </button>
         <button
-          onClick={() => mainSwiper.slidePrev()}
+          onClick={() => mainSwiper.slideNext()}
           className={_.product__arrow + " " + _.product__arrow_next}>
           <svg
             width="32"
