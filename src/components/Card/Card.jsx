@@ -28,7 +28,7 @@ export const Card = () => {
     return <Container>Ошибка получение данных о товаре: {error}</Container>;
   }
 
-  return !loading && data.id && !error ? (
+  return !loading && data && !error ? (
     <section className={_.product}>
       <Container className={_.product__container}>
         <h2 className={_.product__title}>{data.name}</h2>
