@@ -21,7 +21,13 @@ export const fetchProduct = createAsyncThunk(
     });
 
     if (!response.ok) {
-      throw new Error("Не удалось получить список товаров");
+      if (response.status === 401) {
+        return thunkAPI.rejectWithValue({
+          status: response.status,
+          error: "Не удалось получить список данных товара нет авторизации",
+        });
+      }
+      throw new Error("Не удалось получить список данных товара");
     }
 
     return await response.json();
