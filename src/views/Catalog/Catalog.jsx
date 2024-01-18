@@ -4,7 +4,7 @@ import _ from "./Catalog.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchCategories } from "../../store/categories/categories.slice";
-import { CircleLoader } from "react-spinners";
+import { Loader } from "../../components/Loader/Loader";
 
 export const Catalog = () => {
   const dispatch = useDispatch();
@@ -13,20 +13,14 @@ export const Catalog = () => {
     loading: loadingCategories,
     error: errorCategories,
   } = useSelector((state) => state.categories);
+  const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchCategories());
+    if (accessToken) dispatch(fetchCategories());
   }, [dispatch]);
 
   if (loadingCategories) {
-    return (
-      <CircleLoader
-        color="#36d7b7"
-        cssOverride={{
-          margin: "0 auto",
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   if (errorCategories) {

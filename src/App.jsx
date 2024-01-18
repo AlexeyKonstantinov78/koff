@@ -9,8 +9,8 @@ import { Catalog } from "./views/Catalog/Catalog.jsx";
 import { Goods } from "./views/Goods/Goods.jsx";
 import { Cart } from "./components/Cart/Cart.jsx";
 import { Card } from "./components/Card/Card.jsx";
-import { CircleLoader } from "react-spinners";
 import { PagesError } from "./views/Error/404.jsx";
+import { Loader } from "./components/Loader/Loader.jsx";
 
 const router = createBrowserRouter([
   {
@@ -110,14 +110,7 @@ const App = () => {
   }, [dispatch, accessToken]);
 
   if (loading) {
-    return (
-      <CircleLoader
-        color="#36d7b7"
-        cssOverride={{
-          margin: "0 auto",
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   if (error) {

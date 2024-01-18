@@ -4,7 +4,7 @@ import _ from "./Goods.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
-import { CircleLoader } from "react-spinners";
+import { Loader } from "../../components/Loader/Loader";
 
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
@@ -14,20 +14,14 @@ export const Goods = ({ data }) => {
     loading: loadingProducts,
     error: errorProducts,
   } = useSelector((state) => state.products);
+  const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    if (accessToken) dispatch(fetchProducts());
   }, [dispatch]);
 
   if (loadingProducts) {
-    return (
-      <CircleLoader
-        color="#36d7b7"
-        cssOverride={{
-          margin: "0 auto",
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   if (errorProducts) {

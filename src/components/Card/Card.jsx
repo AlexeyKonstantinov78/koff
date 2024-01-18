@@ -7,26 +7,21 @@ import _ from "./Card.module.scss";
 import { CircleLoader } from "react-spinners";
 import { useParams } from "react-router-dom";
 import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
+import { Loader } from "../Loader/Loader";
 
 export const Card = () => {
   const { productId } = useParams();
   const dispatch = useDispatch();
 
   const { data, loading, error } = useSelector((state) => state.product);
+  const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchProduct(productId));
+    if (accessToken) dispatch(fetchProduct(productId));
   }, [dispatch]);
 
   if (loading) {
-    return (
-      <CircleLoader
-        color="#36d7b7"
-        cssOverride={{
-          margin: "0 auto",
-        }}
-      />
-    );
+    return <Loader />;
   }
 
   if (error) {
