@@ -13,8 +13,11 @@ const favoriteSlice = createSlice({
       localStorage.setItem("favorite", JSON.stringify(state.favoriteList));
     },
     removeFromFavorite: (state, action) => {
-      const list = state.favoriteList.filter((id) => id !== action.payload);
-      localStorage.setItem("favorite", JSON.stringify(list));
+      state.favoriteList = state.favoriteList.filter(
+        (id) => id !== action.payload,
+      );
+
+      localStorage.setItem("favorite", JSON.stringify(state.favoriteList));
     },
   },
 });
