@@ -87,25 +87,25 @@
     top: 12px;
     right: 12px;
 
-    svg {
-      fill: #ffffff;
-    }
+    // svg {
+    //   fill: #ffffff;
+    // }
 
-    &:hover,
-    &_active {
-      color: #780096;
+    // &:hover,
+    // &_active {
+    //   color: #780096;
 
-      svg {
-        fill: #780096;
-      }
-    }
+    //   svg {
+    //     fill: #780096;
+    //   }
+    // }
 
-    &:active {
-      color: #c0f;
+    // &:active {
+    //   color: #c0f;
 
-      svg {
-        fill: #c0f;
-      }
-    }
+    //   svg {
+    //     fill: #c0f;
+    //   }
+    // }
   }
 }

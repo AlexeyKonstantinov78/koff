@@ -21,8 +21,6 @@ export const Goods = ({ data }) => {
   } = useSelector((state) => state.products);
   const { accessToken } = useSelector((state) => state.auth);
 
-  console.log(dataProducts);
-
   useEffect(() => {
     if (accessToken) dispatch(fetchProducts({ category, search }));
   }, [dispatch, category, search]);
