@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
 import { Loader } from "../../components/Loader/Loader";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
   const category = searchParam.get("category");
   const search = searchParam.get("search");
+  const location = useLocation();
+  console.log("location: ", location);
+
+  console.log(window.location.pathname);
 
   const {
     data: dataProducts,

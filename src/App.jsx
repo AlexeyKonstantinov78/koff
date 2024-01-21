@@ -11,6 +11,7 @@ import { Cart } from "./components/Cart/Cart.jsx";
 import { Card } from "./components/Card/Card.jsx";
 import { PagesError } from "./views/Error/404.jsx";
 import { Loader } from "./components/Loader/Loader.jsx";
+import { Favorites } from "./views/Favorites/Favorites.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,10 +34,10 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        {/* {!loading && accessToken ? <Main /> : <div>Загрузка...</div>} */}
         <main>
           <Catalog />
-          <Goods />
+          <Favorites />
+          {/* <Goods /> */}
         </main>
         <Footer />
       </>
