@@ -5,20 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
 import { Loader } from "../../components/Loader/Loader";
+import { useSearchParams } from "react-router-dom";
 
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
+  const [searchParam] = useSearchParams();
+  const category = searchParam.get("category");
+  const search = searchParam.get("search");
 
   const {
     data: dataProducts,
     loading: loadingProducts,
     error: errorProducts,
+    pagination,
   } = useSelector((state) => state.products);
   const { accessToken } = useSelector((state) => state.auth);
 
+  console.log(dataProducts);
+
   useEffect(() => {
-    if (accessToken) dispatch(fetchProducts());
-  }, [dispatch]);
+    if (accessToken) dispatch(fetchProducts({ category, search }));
+  }, [dispatch, category, search]);
 
   if (loadingProducts) {
     return <Loader />;
@@ -32,13 +39,19 @@ export const Goods = ({ data }) => {
     <section className={_.goods}>
       <Container>
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        <ul className={_.list}>
-          {dataProducts.map((item) => (
-            <li key={item.article} className="_.catalog__item">
-              <CardItem {...item} />
-            </li>
-          ))}
-        </ul>
+        {dataProducts.length ? (
+          <>
+            <ul className={_.list}>
+              {dataProducts.map((item) => (
+                <li key={item.article} className="_.catalog__item">
+                  <CardItem {...item} />
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p>По вашему запросу ни чео не найдено</p>
+        )}
       </Container>
     </section>
   );
