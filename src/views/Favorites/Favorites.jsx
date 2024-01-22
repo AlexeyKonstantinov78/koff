@@ -40,7 +40,7 @@ export const Favorites = () => {
             </ul>
           </>
         ) : (
-          <p>В избранных ни чего нет</p>
+          <h2>В избранных ни чего нет</h2>
         )}
       </Container>
     </section>
