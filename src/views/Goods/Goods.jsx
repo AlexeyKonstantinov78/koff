@@ -10,9 +10,11 @@ import { useLocation, useSearchParams } from "react-router-dom";
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
+  const location = useLocation();
+
   const category = searchParam.get("category");
   const search = searchParam.get("search");
-  const location = useLocation();
+  const page = searchParam.get("page");
   console.log("location: ", location);
 
   console.log(window.location.pathname);
@@ -26,8 +28,8 @@ export const Goods = ({ data }) => {
   const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (accessToken) dispatch(fetchProducts({ category, search }));
-  }, [dispatch, category, search]);
+    if (accessToken) dispatch(fetchProducts({ category, search, page }));
+  }, [dispatch, category, search, page]);
 
   if (loadingProducts) {
     return <Loader />;

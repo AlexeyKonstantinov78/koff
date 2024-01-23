@@ -5,19 +5,23 @@ import { Container } from "../Container/Container";
 import { Loader } from "../../components/Loader/Loader";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { fetchProducts } from "../../store/products/products.slice";
+import { useSearchParams } from "react-router-dom";
 
 export const Favorites = () => {
   const dispatch = useDispatch();
+  const [searchParam] = useSearchParams();
 
   const { accessToken } = useSelector((state) => state.auth);
   const { data, loading, error } = useSelector((state) => state.products);
   const { favoriteList } = useSelector((state) => state.favorite);
 
+  const page = searchParam.get("page");
+
   useEffect(() => {
     if (accessToken && favoriteList.length > 0) {
-      dispatch(fetchProducts({ list: favoriteList }));
+      dispatch(fetchProducts({ list: favoriteList.join(","), page }));
     }
-  }, [dispatch, favoriteList]);
+  }, [dispatch, favoriteList, page]);
 
   if (loading) {
     return <Loader />;
