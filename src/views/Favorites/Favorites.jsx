@@ -14,7 +14,9 @@ export const Favorites = () => {
   const { favoriteList } = useSelector((state) => state.favorite);
 
   useEffect(() => {
-    if (accessToken) dispatch(fetchProducts({ list: favoriteList }));
+    if (accessToken && favoriteList.length > 0) {
+      dispatch(fetchProducts({ list: favoriteList }));
+    }
   }, [dispatch, favoriteList]);
 
   if (loading) {
@@ -40,7 +42,7 @@ export const Favorites = () => {
             </ul>
           </>
         ) : (
-          <h2>В избранных ни чего нет</h2>
+          <h3>В избранных ни чего нет</h3>
         )}
       </Container>
     </section>
