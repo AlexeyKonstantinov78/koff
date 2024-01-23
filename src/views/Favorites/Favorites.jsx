@@ -6,13 +6,16 @@ import { Loader } from "../../components/Loader/Loader";
 import { CardItem } from "../../components/CardItem/CardItem";
 import { fetchProducts } from "../../store/products/products.slice";
 import { useSearchParams } from "react-router-dom";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export const Favorites = () => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
 
   const { accessToken } = useSelector((state) => state.auth);
-  const { data, loading, error } = useSelector((state) => state.products);
+  const { data, loading, error, pagination } = useSelector(
+    (state) => state.products,
+  );
   const { favoriteList } = useSelector((state) => state.favorite);
 
   const page = searchParam.get("page");
@@ -44,6 +47,7 @@ export const Favorites = () => {
                 </li>
               ))}
             </ul>
+            {pagination ? <Pagination pagination={pagination} /> : ""}
           </>
         ) : (
           <h3>В избранных ни чего нет</h3>

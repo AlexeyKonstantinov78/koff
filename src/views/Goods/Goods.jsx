@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
 import { Loader } from "../../components/Loader/Loader";
 import { useLocation, useSearchParams } from "react-router-dom";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export const Goods = ({ data }) => {
   const dispatch = useDispatch();
@@ -52,6 +53,7 @@ export const Goods = ({ data }) => {
                 </li>
               ))}
             </ul>
+            {pagination ? <Pagination pagination={pagination} /> : ""}
           </>
         ) : (
           <p>По вашему запросу ни чего не найдено</p>
