@@ -47,7 +47,11 @@ export const Favorites = () => {
                 </li>
               ))}
             </ul>
-            {pagination ? <Pagination pagination={pagination} /> : ""}
+            {pagination && pagination.totalProducts >= pagination.limit ? (
+              <Pagination pagination={pagination} />
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <h3>В избранных ни чего нет</h3>

@@ -5,55 +5,52 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
 import { Loader } from "../../components/Loader/Loader";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination";
 
-export const Goods = ({ data }) => {
+export const Goods = () => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
-  const location = useLocation();
 
   const category = searchParam.get("category");
   const search = searchParam.get("search");
   const page = searchParam.get("page");
-  console.log("location: ", location);
 
-  console.log(window.location.pathname);
-
-  const {
-    data: dataProducts,
-    loading: loadingProducts,
-    error: errorProducts,
-    pagination,
-  } = useSelector((state) => state.products);
+  const { data, loading, error, pagination } = useSelector(
+    (state) => state.products,
+  );
   const { accessToken } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (accessToken) dispatch(fetchProducts({ category, search, page }));
   }, [dispatch, category, search, page]);
 
-  if (loadingProducts) {
+  if (loading) {
     return <Loader />;
   }
 
-  if (errorProducts) {
-    return <Container>Ошибка получение продукта: {errorProducts}</Container>;
+  if (error) {
+    return <Container>Ошибка получение продукта: {error}</Container>;
   }
 
   return (
     <section className={_.goods}>
       <Container>
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        {dataProducts.length ? (
+        {data.length ? (
           <>
             <ul className={_.list}>
-              {dataProducts.map((item) => (
+              {data.map((item) => (
                 <li key={item.article} className="_.catalog__item">
                   <CardItem {...item} />
                 </li>
               ))}
             </ul>
-            {pagination ? <Pagination pagination={pagination} /> : ""}
+            {pagination && pagination.totalProducts > pagination.limit ? (
+              <Pagination pagination={pagination} />
+            ) : (
+              ""
+            )}
           </>
         ) : (
           <p>По вашему запросу ни чего не найдено</p>
