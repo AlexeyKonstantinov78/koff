@@ -37,24 +37,7 @@ export const Goods = () => {
     <section className={_.goods}>
       <Container>
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        {data.length ? (
-          <>
-            <ul className={_.list}>
-              {data.map((item) => (
-                <li key={item.article} className="_.catalog__item">
-                  <CardItem {...item} />
-                </li>
-              ))}
-            </ul>
-            {pagination && pagination.totalProducts > pagination.limit ? (
-              <Pagination pagination={pagination} />
-            ) : (
-              ""
-            )}
-          </>
-        ) : (
-          <p>По вашему запросу ни чего не найдено</p>
-        )}
+        <CardItem data={data} pagination={pagination} />
       </Container>
     </section>
   );
