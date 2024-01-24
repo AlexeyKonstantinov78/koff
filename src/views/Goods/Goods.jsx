@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import { fetchProducts } from "../../store/products/products.slice";
 import { Loader } from "../../components/Loader/Loader";
 import { useSearchParams } from "react-router-dom";
-import { Pagination } from "../../components/Pagination/Pagination";
 
 export const Goods = () => {
   const dispatch = useDispatch();
@@ -37,7 +36,11 @@ export const Goods = () => {
     <section className={_.goods}>
       <Container>
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        <CardItem data={data} pagination={pagination} />
+        {data.length ? (
+          <CardItem data={data} pagination={pagination} />
+        ) : (
+          <h3>По вашему запросу ни чего не найдено</h3>
+        )}
       </Container>
     </section>
   );
