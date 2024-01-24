@@ -7,7 +7,7 @@ import { Container } from "./views/Container/Container.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Catalog } from "./views/Catalog/Catalog.jsx";
 import { Goods } from "./views/Goods/Goods.jsx";
-import { Cart } from "./components/Cart/Cart.jsx";
+import { Cart } from "./views/Cart/Cart.jsx";
 import { Card } from "./components/Card/Card.jsx";
 import { PagesError } from "./views/Error/404.jsx";
 import { Loader } from "./components/Loader/Loader.jsx";
