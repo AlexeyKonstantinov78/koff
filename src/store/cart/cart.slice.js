@@ -23,8 +23,8 @@ export const fetchCart = createAsyncThunk(
       const response = await fetch(`${API_URL}api/cart`, {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
-          // eslint-disable-next-line prettier/prettier
-          "Authorization": `Bearer ${token}`,
+          // eslint-disable-next-line prettier/prettier, quote-props
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -51,7 +51,7 @@ export const addProductToCart = createAsyncThunk(
         headers: {
           "Content-Type": "application/json",
           // eslint-disable-next-line quote-props, prettier/prettier
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(productData),
       });
@@ -73,15 +73,17 @@ export const delProductToCart = createAsyncThunk(
     const state = getState();
     const token = state.auth.accessToken;
 
+    console.log(id);
+
     try {
       const response = await fetch(
         `${API_URL}api/cart/products/${encodeURIComponent(id)}`,
         {
           method: "DELETE",
           headers: {
-            // "Content-Type": "application/json",
+            "Content-Type": "application/json",
             // eslint-disable-next-line quote-props, prettier/prettier
-            "Authorization": `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         },
       );
