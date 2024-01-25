@@ -8,7 +8,7 @@ export const CartPlace = () => {
 
   return (
     <>
-      {products.length > 0 ? (
+      {products.length > 0 && (
         <div className={_.place}>
           <h3 className={_.subtitle}>Оформление</h3>
           <div className={_.placeInfo}>
@@ -18,8 +18,6 @@ export const CartPlace = () => {
           <p className={_.placeDelivery}>Доставка 0 ₽</p>
           <button className={_.placeBtn}>Оформить заказ</button>
         </div>
-      ) : (
-        ""
       )}
     </>
   );
