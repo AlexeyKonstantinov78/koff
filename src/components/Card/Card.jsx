@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { SwiperSlider } from "../SwiperSlider/SwiperSlider";
 import { Loader } from "../Loader/Loader";
 import { FavoriteBtn } from "../FavoriteBtn/FavoriteBtn";
+import { AddToCartBtn } from "../AddToCartBtn/AddToCartBtn";
 
 export const Card = () => {
   const { productId } = useParams();
@@ -56,9 +57,7 @@ export const Card = () => {
             </table>
           </div>
           <div className={_.product__btns}>
-            <button className={_.product__btn} data-id={data.id}>
-              В корзину
-            </button>
+            <AddToCartBtn className={_.product__btn} id={data.id} />
             <FavoriteBtn className={_.product__like} id={data.id} />
           </div>
         </div>

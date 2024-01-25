@@ -3,6 +3,7 @@ import { API_URL } from "../../const";
 import { Link } from "react-router-dom";
 import { FavoriteBtn } from "../FavoriteBtn/FavoriteBtn";
 import { Pagination } from "../Pagination/Pagination";
+import { AddToCartBtn } from "../AddToCartBtn/AddToCartBtn";
 
 export const CardItem = ({ data, pagination }) => (
   <>
@@ -29,12 +30,7 @@ export const CardItem = ({ data, pagination }) => (
                 {item.price.toLocaleString()}&nbsp;₽
               </p>
             </div>
-            <button
-              className={_.card__btn}
-              data-id={item.id}
-              aria-label="В корзину">
-              В корзину
-            </button>
+            <AddToCartBtn className={_.card__btn} id={item.id} />
             <FavoriteBtn className={_.card__favorite} id={item.id} />
           </article>
         </li>

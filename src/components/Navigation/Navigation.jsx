@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import _ from "./Navigation.module.scss";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export const Navigation = () => {
   const { favoriteList } = useSelector((state) => state.favorite);
+  const { totalCount } = useSelector((state) => state.cart);
 
   return (
     <nav className={_.navigation}>
@@ -30,12 +32,12 @@ export const Navigation = () => {
       </Link>
       <Link className={_.link} to="/cart">
         <span className={_.text}>Корзина</span>
-        <span>(5)</span>
+        <span>({totalCount})</span>
         <svg
           width="16"
           height="16"
           viewBox="0 0 16 16"
-          fill="none"
+          fill={totalCount > 0 ? "#780096" : "none"}
           xmlns="http://www.w3.org/2000/svg">
           <path
             d="M5.87333 1.33325L3.45999 3.75325"
