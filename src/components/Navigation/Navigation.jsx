@@ -32,7 +32,7 @@ export const Navigation = () => {
       </Link>
       <Link className={_.link} to="/cart">
         <span className={_.text}>Корзина</span>
-        <span>({totalCount})</span>
+        {totalCount > 0 ? <span>({totalCount})</span> : ""}
         <svg
           width="16"
           height="16"
