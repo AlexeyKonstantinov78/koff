@@ -25,19 +25,13 @@ export const Favorites = () => {
     }
   }, [dispatch, favoriteList, page]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <Container>Ошибка получение продукта: {error}</Container>;
-  }
-
   return (
     <section className={_.goods}>
       <Container>
+        {loading && <Loader />}
+        {error && <p>Ошибка получение продукта: {error}</p>}
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        {data.length && favoriteList.length ? (
+        {!loading && data.length && favoriteList.length ? (
           <CardItem data={data} pagination={pagination} />
         ) : (
           <h3>В избранных ни чего нет</h3>

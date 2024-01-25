@@ -19,24 +19,21 @@ export const Catalog = () => {
     if (accessToken) dispatch(fetchCategories());
   }, [dispatch]);
 
-  if (loadingCategories) {
-    return <Loader />;
-  }
-
-  if (errorCategories) {
-    return <Container>Ошибка получения категорий: {errorCategories}</Container>;
-  }
-
   return (
     <nav className={_.catalog}>
       <Container>
+        {loadingCategories && <Loader />}
+        {errorCategories && (
+          <p>Ошибка получения категорий: {errorCategories}</p>
+        )}
         <h2 className={`${_.title} visually-hidden`}>Категории товаров</h2>
         <ul className={_.catalog__list}>
-          {dataCategories.map((item, i) => (
-            <li key={i} className="_.catalog__item">
-              <CategoryItem title={item} />
-            </li>
-          ))}
+          {!loadingCategories &&
+            dataCategories.map((item, i) => (
+              <li key={i} className="_.catalog__item">
+                <CategoryItem title={item} />
+              </li>
+            ))}
         </ul>
       </Container>
     </nav>

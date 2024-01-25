@@ -24,19 +24,13 @@ export const Goods = () => {
     if (accessToken) dispatch(fetchProducts({ category, search, page }));
   }, [dispatch, category, search, page]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <Container>Ошибка получение продукта: {error}</Container>;
-  }
-
   return (
     <section className={_.goods}>
       <Container>
+        {loading && <Loader />}
+        {error && <p>Ошибка получение продукта: {error}</p>}
         <h2 className={`${_.title} visually-hidden`}>Список товаров</h2>
-        {data.length ? (
+        {!loading && data.length ? (
           <CardItem data={data} pagination={pagination} />
         ) : (
           <h3>По вашему запросу ни чего не найдено</h3>
