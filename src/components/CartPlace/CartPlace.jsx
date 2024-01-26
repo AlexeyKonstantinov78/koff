@@ -2,13 +2,13 @@ import { useSelector } from "react-redux";
 import _ from "./CartPlace.module.scss";
 
 export const CartPlace = () => {
-  const { products, totalPrice, totalCount } = useSelector(
+  const { products, loadingFetch, totalPrice, totalCount } = useSelector(
     (state) => state.cart,
   );
 
   return (
     <>
-      {products.length > 0 && (
+      {!loadingFetch && products.products?.length > 0 && (
         <div className={_.place}>
           <h3 className={_.subtitle}>Оформление</h3>
           <div className={_.placeInfo}>

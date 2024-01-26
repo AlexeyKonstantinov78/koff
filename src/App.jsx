@@ -12,6 +12,7 @@ import { Card } from "./components/Card/Card.jsx";
 import { PagesError } from "./views/Error/404.jsx";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { Favorites } from "./views/Favorites/Favorites.jsx";
+import { fetchCart } from "./store/cart/cart.slice.js";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ const App = () => {
   useEffect(() => {
     if (!accessToken) {
       dispatch(fetchAccessToken());
+    }
+
+    if (accessToken) {
+      dispatch(fetchCart());
     }
   }, [dispatch, accessToken]);
 

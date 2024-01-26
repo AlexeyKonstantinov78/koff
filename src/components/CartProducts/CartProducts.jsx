@@ -14,19 +14,13 @@ export const CartProducts = () => {
     dispatch(fetchCart());
   }, [dispatch]);
 
-  if (error) {
-    setTimeout(() => {
-      dispatch(fetchCart());
-    }, 121000);
-  }
-
   return (
     <>
       {loadingFetch && <Loader />}
       {error && <>Ошибка получение дынных из карзины : {error}</>}
       <ul className={_.products}>
-        {!error && products.length > 0 ? (
-          products.map((product) => (
+        {!error && !loadingFetch && products.products?.length > 0 ? (
+          products.products.map((product) => (
             <li key={product.article} className={_.product}>
               <img
                 className={_.img}

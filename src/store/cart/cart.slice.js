@@ -9,7 +9,6 @@ const initialState = {
   loadingAdd: false,
   loadingUpdate: false,
   loadingRemove: false,
-  message: null,
   error: null,
 };
 
@@ -22,8 +21,6 @@ export const fetchCart = createAsyncThunk(
     try {
       const response = await fetch(`${API_URL}api/cart`, {
         headers: {
-          "Content-Type": "application/json;charset=utf-8",
-          // eslint-disable-next-line prettier/prettier, quote-props
           Authorization: `Bearer ${token}`,
         },
       });
@@ -108,10 +105,9 @@ const cartSlice = createSlice({
       .addCase(fetchCart.pending, (state) => {
         state.loadingFetch = true;
         state.error = null;
-        state.message = null;
       })
       .addCase(fetchCart.fulfilled, (state, action) => {
-        state.products = action.payload.products;
+        state.products = action.payload;
         state.totalPrice = action.payload.totalPrice;
         state.totalCount = action.payload.totalCount;
         state.loadingFetch = false;
@@ -120,7 +116,6 @@ const cartSlice = createSlice({
       .addCase(fetchCart.rejected, (state, action) => {
         state.loadingFetch = false;
         state.error = action.error.message;
-        state.message = null;
       });
 
     builder
@@ -131,7 +126,6 @@ const cartSlice = createSlice({
       .addCase(addProductToCart.fulfilled, (state, action) => {
         state.products = action.payload;
         state.totalCount = action.payload.totalCount;
-        state.message = action.payload.message;
         state.loadingAdd = false;
         state.error = null;
       })
@@ -148,13 +142,11 @@ const cartSlice = createSlice({
       .addCase(delProductToCart.fulfilled, (state, action) => {
         state.products = action.payload;
         state.totalCount = action.payload.totalCount;
-        state.message = action.payload.message;
         state.loadingRemove = false;
         state.error = null;
       })
       .addCase(delProductToCart.rejected, (state, action) => {
         state.loadingRemove = false;
-        state.error = action.error.message;
         state.message = null;
       });
   },

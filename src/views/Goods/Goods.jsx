@@ -33,7 +33,7 @@ export const Goods = () => {
         {!loading && data.length ? (
           <CardItem data={data} pagination={pagination} />
         ) : (
-          <h3>По вашему запросу ни чего не найдено</h3>
+          !loading && <h3>По вашему запросу ни чего не найдено</h3>
         )}
       </Container>
     </section>
