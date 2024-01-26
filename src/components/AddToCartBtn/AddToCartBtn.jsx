@@ -3,8 +3,11 @@ import {
   addProductToCart,
   delProductToCart,
 } from "../../store/cart/cart.slice";
+import { useEffect, useState } from "react";
 
 export const AddToCartBtn = ({ className, id }) => {
+  const [isIdCart, setIsIdCart] = useState();
+
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.cart);
 
@@ -20,9 +23,19 @@ export const AddToCartBtn = ({ className, id }) => {
     dispatch(delProductToCart(id));
   };
 
+  useEffect(() => {
+    products.product?.id !== id ? setIsIdCart(false) : setIsIdCart(true);
+
+    if (Array.isArray(products.products)) {
+      products.products.map((product) => {
+        if (product.id === id) setIsIdCart(true);
+      });
+    }
+  }, [dispatch, products]);
+
   return (
     <>
-      {products.product?.id !== id ? (
+      {!isIdCart ? (
         <button
           className={className}
           data-id={id}
