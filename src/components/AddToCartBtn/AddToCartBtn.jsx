@@ -4,12 +4,15 @@ import {
   delProductToCart,
 } from "../../store/cart/cart.slice";
 import { useEffect, useState } from "react";
+import { Loader } from "../Loader/Loader";
 
 export const AddToCartBtn = ({ className, id }) => {
   const [isIdCart, setIsIdCart] = useState();
 
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.cart);
+  const { products, loadingRemove, loadingAdd } = useSelector(
+    (state) => state.cart,
+  );
 
   const handlerAddToCart = (event) => {
     event.preventDefault();
@@ -36,21 +39,33 @@ export const AddToCartBtn = ({ className, id }) => {
   return (
     <>
       {!isIdCart ? (
-        <button
-          className={className}
-          data-id={id}
-          onClick={handlerAddToCart}
-          aria-label="В корзину">
-          В корзину
-        </button>
+        <>
+          {loadingAdd ? (
+            <Loader />
+          ) : (
+            <button
+              className={className}
+              data-id={id}
+              onClick={handlerAddToCart}
+              aria-label="В корзину">
+              В корзину
+            </button>
+          )}
+        </>
       ) : (
-        <button
-          className={className}
-          data-id={id}
-          onClick={handlerDelToCart}
-          aria-label="В корзину">
-          Удалить из корзины
-        </button>
+        <>
+          {loadingRemove ? (
+            <Loader />
+          ) : (
+            <button
+              className={className}
+              data-id={id}
+              onClick={handlerDelToCart}
+              aria-label="В корзину">
+              Удалить из корзины
+            </button>
+          )}
+        </>
       )}
     </>
   );
