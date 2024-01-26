@@ -11,14 +11,12 @@ export const AddToCartBtn = ({ className, id }) => {
 
   const handlerAddToCart = (event) => {
     event.preventDefault();
-    const id = event.target.dataset.id;
     const data = { productId: id, quantity: 1 };
     dispatch(addProductToCart(data));
   };
 
   const handlerDelToCart = (event) => {
     event.preventDefault();
-    const id = event.target.dataset.id;
     console.log(id);
     dispatch(delProductToCart(id));
   };
