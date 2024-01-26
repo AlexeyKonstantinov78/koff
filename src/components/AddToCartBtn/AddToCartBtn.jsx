@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import _ from "./AddToCartBtn.module.scss";
 import {
   addProductToCart,
   delProductToCart,
