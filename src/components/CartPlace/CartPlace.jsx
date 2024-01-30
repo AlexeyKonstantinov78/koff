@@ -1,3 +1,4 @@
+import { declOfNum } from "../../helpers/declOfNum";
 import _ from "./CartPlace.module.scss";
 
 export const CartPlace = ({ loadingFetch, totalPrice, totalCount }) => {
@@ -9,7 +10,10 @@ export const CartPlace = ({ loadingFetch, totalPrice, totalCount }) => {
         <div className={_.place}>
           <h3 className={_.subtitle}>Оформление</h3>
           <div className={_.placeInfo}>
-            <p>{totalCount} товара на сумму:</p>
+            <p>
+              {totalCount}{" "}
+              {declOfNum(totalCount, ["товар", "товара", "товаров"])} на сумму:
+            </p>
             <p>{totalPrice.toLocaleString()}&nbsp;₽</p>
           </div>
           <p className={_.placeDelivery}>Доставка 0 ₽</p>
