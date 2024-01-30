@@ -162,9 +162,12 @@ const cartSlice = createSlice({
         state.error = null;
       })
       .addCase(updateProductToCart.fulfilled, (state, action) => {
-        // state.products.push(action.payload.product);
-        // state.products.map()
-        console.log(action.payload);
+        state.products = state.products.map((product) => {
+          if (product.id === action.payload.productCart.productId) {
+            product.quantity = action.payload.productCart.quantity;
+          }
+          return product;
+        });
         state.totalCount = action.payload.totalCount;
         state.loadingUpdate = false;
         state.error = null;

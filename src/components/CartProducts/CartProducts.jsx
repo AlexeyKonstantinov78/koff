@@ -2,17 +2,35 @@ import { useDispatch } from "react-redux";
 import _ from "./CartProducts.module.scss";
 import { Loader } from "../Loader/Loader";
 import { API_URL } from "../../const";
-import { useEffect } from "react";
-import { fetchCart, updateProductToCart } from "../../store/cart/cart.slice";
+import {
+  delProductToCart,
+  updateProductToCart,
+} from "../../store/cart/cart.slice";
 
 export const CartProducts = ({ products, loadingFetch, error }) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchCart());
-    // const data = { productId: 6, quantity: 2 };
-    // dispatch(updateProductToCart(data));
-  }, [dispatch]);
+  const handleMinus = (id, quantity) => {
+    if (quantity > 1) {
+      dispatch(
+        updateProductToCart({
+          productId: id,
+          quantity: quantity - 1,
+        }),
+      );
+    } else {
+      dispatch(delProductToCart(id));
+    }
+  };
+
+  const handlePlus = (id, quantity) => {
+    dispatch(
+      updateProductToCart({
+        productId: id,
+        quantity: quantity + 1,
+      }),
+    );
+  };
 
   return (
     <>
@@ -34,9 +52,17 @@ export const CartProducts = ({ products, loadingFetch, error }) => {
               <p className={_.article}>арт.&nbsp;{article}</p>
 
               <div className={_.productControl}>
-                <button className={_.productBtn}>-</button>
+                <button
+                  className={_.productBtn}
+                  onClick={() => handleMinus(id, quantity)}>
+                  -
+                </button>
                 <p className={_.productCount}>{quantity}</p>
-                <button className={_.productBtn}>+</button>
+                <button
+                  className={_.productBtn}
+                  onClick={() => handlePlus(id, quantity)}>
+                  +
+                </button>
               </div>
             </li>
           ))}
