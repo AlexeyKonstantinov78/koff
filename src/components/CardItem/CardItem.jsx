@@ -30,7 +30,11 @@ export const CardItem = ({ data, pagination }) => (
                 {item.price.toLocaleString()}&nbsp;₽
               </p>
             </div>
-            <AddToCartBtn className={_.card__btn} id={item.id} />
+            <AddToCartBtn
+              key={item.article}
+              className={_.card__btn}
+              id={item.id}
+            />
             <FavoriteBtn className={_.card__favorite} id={item.id} />
           </article>
         </li>

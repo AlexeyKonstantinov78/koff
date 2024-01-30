@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import _ from "./Navigation.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { fetchCart } from "../../store/cart/cart.slice";
 
 export const Navigation = () => {
+  const dispatch = useDispatch();
   const { favoriteList } = useSelector((state) => state.favorite);
   const { totalCount } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(fetchCart());
+  }, [dispatch]);
 
   return (
     <nav className={_.navigation}>

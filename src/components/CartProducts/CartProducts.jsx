@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import _ from "./CartProducts.module.scss";
 import { Loader } from "../Loader/Loader";
 import { API_URL } from "../../const";
 import { useEffect } from "react";
-import { fetchCart } from "../../store/cart/cart.slice";
+import { fetchCart, updateProductToCart } from "../../store/cart/cart.slice";
 
-export const CartProducts = () => {
-  const { products, loadingFetch, error } = useSelector((state) => state.cart);
-
+export const CartProducts = ({ products, loadingFetch, error }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchCart());
+    // const data = { productId: 6, quantity: 2 };
+    // dispatch(updateProductToCart(data));
   }, [dispatch]);
 
   return (
@@ -19,28 +19,27 @@ export const CartProducts = () => {
       {loadingFetch && <Loader />}
       {error && <>Ошибка получение дынных из карзины : {error}</>}
       <ul className={_.products}>
-        {!error && !loadingFetch && products.products?.length > 0 ? (
-          products.products.map((product) => (
-            <li key={product.article} className={_.product}>
+        {!error &&
+          !loadingFetch &&
+          products?.length > 0 &&
+          products.map(({ id, name, images, price, article, quantity }) => (
+            <li key={id} className={_.product}>
               <img
                 className={_.img}
-                src={`${API_URL}${product.images[0]}`}
-                alt={product.name}
+                src={`${API_URL}${images[0]}`}
+                alt={name}
               />
-              <h3 className={_.titleProduct}>{product.name}</h3>
-              <p className={_.price}>{product.price.toLocaleString()}&nbsp;₽</p>
-              <p className={_.article}>арт.&nbsp;{product.article}</p>
+              <h3 className={_.titleProduct}>{name}</h3>
+              <p className={_.price}>{price.toLocaleString()}&nbsp;₽</p>
+              <p className={_.article}>арт.&nbsp;{article}</p>
 
               <div className={_.productControl}>
                 <button className={_.productBtn}>-</button>
-                <p className={_.productCount}>{product.quantity}</p>
+                <p className={_.productCount}>{quantity}</p>
                 <button className={_.productBtn}>+</button>
               </div>
             </li>
-          ))
-        ) : (
-          <h3>{!error && !loadingFetch && <>В корзине ни чего нет</>}</h3>
-        )}
+          ))}
       </ul>
     </>
   );

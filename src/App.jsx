@@ -109,10 +109,6 @@ const App = () => {
     if (!accessToken) {
       dispatch(fetchAccessToken());
     }
-
-    if (accessToken) {
-      dispatch(fetchCart());
-    }
   }, [dispatch, accessToken]);
 
   if (loading) {

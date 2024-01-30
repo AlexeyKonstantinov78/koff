@@ -3,16 +3,15 @@ import {
   addProductToCart,
   delProductToCart,
 } from "../../store/cart/cart.slice";
-import { useEffect, useState } from "react";
 import { Loader } from "../Loader/Loader";
 
 export const AddToCartBtn = ({ className, id }) => {
-  const [isIdCart, setIsIdCart] = useState();
-
   const dispatch = useDispatch();
   const { products, loadingRemove, loadingAdd } = useSelector(
     (state) => state.cart,
   );
+
+  const isIdCart = products?.find((product) => product.id === id);
 
   const handlerAddToCart = (event) => {
     event.preventDefault();
@@ -22,19 +21,8 @@ export const AddToCartBtn = ({ className, id }) => {
 
   const handlerDelToCart = (event) => {
     event.preventDefault();
-    console.log(id);
     dispatch(delProductToCart(id));
   };
-
-  useEffect(() => {
-    products.product?.id !== id ? setIsIdCart(false) : setIsIdCart(true);
-
-    if (Array.isArray(products.products)) {
-      products.products.map((product) => {
-        if (product.id === id) setIsIdCart(true);
-      });
-    }
-  }, [dispatch, products]);
 
   return (
     <>
@@ -62,7 +50,7 @@ export const AddToCartBtn = ({ className, id }) => {
               data-id={id}
               onClick={handlerDelToCart}
               aria-label="В корзину">
-              Удалить из корзины
+              Из корзины
             </button>
           )}
         </>
