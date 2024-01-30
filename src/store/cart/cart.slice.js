@@ -148,6 +148,10 @@ const cartSlice = createSlice({
         state.products.push(action.payload.product);
         state.totalCount = action.payload.totalCount;
         state.loadingAdd = false;
+        state.totalPrice = state.products.reduce(
+          (acc, product) => product.price * product.quantity + acc,
+          0,
+        );
         state.error = null;
       })
       .addCase(addProductToCart.rejected, (state, action) => {
@@ -169,6 +173,10 @@ const cartSlice = createSlice({
           return product;
         });
         state.totalCount = action.payload.totalCount;
+        state.totalPrice = state.products.reduce(
+          (acc, product) => product.price * product.quantity + acc,
+          0,
+        );
         state.loadingUpdate = false;
         state.error = null;
       })
@@ -188,6 +196,10 @@ const cartSlice = createSlice({
           (product) => product.id !== action.payload.id,
         );
         state.totalCount = action.payload.totalCount;
+        state.totalPrice = state.products.reduce(
+          (acc, product) => product.price * product.quantity + acc,
+          0,
+        );
         state.loadingRemove = false;
         state.error = null;
       })
