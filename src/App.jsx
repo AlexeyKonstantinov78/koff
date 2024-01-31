@@ -13,6 +13,7 @@ import { PagesError } from "./views/Error/404.jsx";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { Favorites } from "./views/Favorites/Favorites.jsx";
 import { Order } from "./components/Order/Order.jsx";
+import { Breadcrumbs } from "./components/Breadcrumbs/Breadcrumbs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,7 @@ const router = createBrowserRouter([
         {/* {!loading && accessToken ? <Main /> : <div>Загрузка...</div>} */}
         <main>
           <Catalog />
+          <Breadcrumbs />
           <Goods />
         </main>
         <Footer />
@@ -93,6 +95,7 @@ const router = createBrowserRouter([
         {/* {!loading && accessToken ? <Main /> : <div>Загрузка...</div>} */}
         <main>
           <Catalog />
+          <Breadcrumbs />
           <Card />
         </main>
         <Footer />
