@@ -24,6 +24,16 @@ export const Order = () => {
     };
   }, [dispatch]);
 
+  if (!orderData && !loading) {
+    return (
+      <section>
+        <Container>
+          <h3>Заказ не найден</h3>
+        </Container>
+      </section>
+    );
+  }
+
   if (error) {
     return (
       <section>
@@ -37,13 +47,6 @@ export const Order = () => {
   return (
     <>
       {!orderData && loading && <Loader />}
-      {!orderData && !loading && (
-        <section>
-          <Container>
-            <h3>Заказ не найден</h3>
-          </Container>
-        </section>
-      )}
       {orderData && !loading && (
         <section className={_.order}>
           <Container className={_.container}>

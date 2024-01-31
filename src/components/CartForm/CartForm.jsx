@@ -72,7 +72,6 @@ export const CartForm = () => {
           <textarea
             className={_.textarea}
             {...register("comments")}
-            cols="30"
             rows="10"
             placeholder="Комментарий к заказу"></textarea>
         </label>
