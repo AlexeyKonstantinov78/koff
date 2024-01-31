@@ -17,7 +17,9 @@ export const CartPlace = ({ loadingFetch, totalPrice, totalCount }) => {
             <p>{totalPrice.toLocaleString()}&nbsp;₽</p>
           </div>
           <p className={_.placeDelivery}>Доставка 0 ₽</p>
-          <button className={_.placeBtn}>Оформить заказ</button>
+          <button className={_.placeBtn} form="orderForm">
+            Оформить заказ
+          </button>
         </div>
       )}
     </>

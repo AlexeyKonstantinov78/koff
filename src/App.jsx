@@ -12,7 +12,7 @@ import { Card } from "./components/Card/Card.jsx";
 import { PagesError } from "./views/Error/404.jsx";
 import { Loader } from "./components/Loader/Loader.jsx";
 import { Favorites } from "./views/Favorites/Favorites.jsx";
-import { fetchCart } from "./store/cart/cart.slice.js";
+import { Order } from "./components/Order/Order.jsx";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +94,19 @@ const router = createBrowserRouter([
         <main>
           <Catalog />
           <Card />
+        </main>
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: "/order/:orderId",
+    element: (
+      <>
+        <Header />
+        {/* {!loading && accessToken ? <Main /> : <div>Загрузка...</div>} */}
+        <main>
+          <Order />
         </main>
         <Footer />
       </>
